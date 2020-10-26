@@ -585,6 +585,8 @@ spec:
 
 If you are using CoreDNS, you can enable NodeLocal DNSCache. It is used to improve the Cluster DNS performance by running a dns caching agent on cluster nodes as a DaemonSet.
 
+If `forwardToKubeDNS` is enabled, it will not use reslov.conf as fallback for domains outside of the cluster and will always query kube-dns
+
 ```yaml
 spec:
   kubeDNS:

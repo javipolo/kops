@@ -18206,7 +18206,11 @@ data:
         reload
         loop
         bind {{ KubeDNS.NodeLocalDNS.LocalIP }}{{ if NodeLocalDNSServerIP }} {{ NodeLocalDNSServerIP }}{{ end }}
+        {{- if KubeDNS.NodeLocalDNS.ForwardToKubeDNS }}
+        forward . {{ NodeLocalDNSClusterIP }} {
+        {{- else }}
         forward . __PILLAR__UPSTREAM__SERVERS__ {
+        {{- end }}
           force_tcp
         }
         prometheus :9253
@@ -18300,7 +18304,8 @@ spec:
           name: node-local-dns
           items:
             - key: Corefile
-              path: Corefile.base`)
+              path: Corefile.base
+`)
 
 func cloudupResourcesAddonsNodelocaldnsAddonsK8sIoK8s112YamlTemplateBytes() ([]byte, error) {
 	return _cloudupResourcesAddonsNodelocaldnsAddonsK8sIoK8s112YamlTemplate, nil

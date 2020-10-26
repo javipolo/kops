@@ -3259,6 +3259,11 @@ func (in *NodeLocalDNSConfig) DeepCopyInto(out *NodeLocalDNSConfig) {
 		*out = new(bool)
 		**out = **in
 	}
+	if in.ForwardToKubeDNS != nil {
+		in, out := &in.ForwardToKubeDNS, &out.ForwardToKubeDNS
+		*out = new(bool)
+		**out = **in
+	}
 	return
 }
 

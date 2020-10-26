@@ -406,6 +406,8 @@ type NodeLocalDNSConfig struct {
 	Enabled *bool `json:"enabled,omitempty"`
 	// Local listen IP address. It can be any IP in the 169.254.20.0/16 space or any other IP address that can be guaranteed to not collide with any existing IP.
 	LocalIP string `json:"localIP,omitempty"`
+    // If enabled, it will not use reslov.conf as fallback for domains outside of the cluster and will always query kube-dns
+	ForwardToKubeDNS *bool `json:"forwardToKubeDNS,omitempty"`
 }
 
 // ExternalDNSConfig are options of the dns-controller
